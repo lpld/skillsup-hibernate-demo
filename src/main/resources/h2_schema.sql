@@ -2,6 +2,7 @@ CREATE TABLE Author (
   id      BIGINT       NOT NULL,
   country VARCHAR(255) NOT NULL,
   name    VARCHAR(255) NOT NULL,
+  version INTEGER,
   PRIMARY KEY (id)
 );
 
