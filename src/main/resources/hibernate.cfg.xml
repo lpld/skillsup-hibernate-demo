@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.h2.Driver</property>
+        <property name="connection.url">jdbc:h2:mem:books_db;DB_CLOSE_DELAY=-1</property>
+        <!--<property name="connection.username"/>-->
+        <!--<property name="connection.password"/>-->
+        <property name="show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="connection.isolation">4</property>
+
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Address"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.BookPublication"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Book"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.BookStore"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Genre"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Magazine"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.MagazineIssue"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Publication"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Publisher"/>
+        <mapping class="ua.skillsup.javacourse.bookstore.model.Author"/>
+    </session-factory>
+
+</hibernate-configuration>
