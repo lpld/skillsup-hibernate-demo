@@ -40,7 +40,7 @@ public class Book {
   @JoinColumn(name = "author_id", nullable = false)
   private Author author;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.LAZY)
   private List<Genre> genres;
 
   @OneToMany(mappedBy = "book")

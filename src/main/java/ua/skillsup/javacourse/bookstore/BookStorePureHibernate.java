@@ -26,9 +26,9 @@ import ua.skillsup.javacourse.bookstore.model.Genre;
  * @author leopold
  * @since 8/03/16
  */
-public class BookStoreDemo {
+public class BookStorePureHibernate {
 
-  private static final Logger log = LoggerFactory.getLogger(BookStoreDemo.class);
+  private static final Logger log = LoggerFactory.getLogger(BookStorePureHibernate.class);
 
   static SessionFactory sessionFactory;
 
