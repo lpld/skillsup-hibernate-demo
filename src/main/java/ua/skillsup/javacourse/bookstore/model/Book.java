@@ -1,5 +1,6 @@
 package ua.skillsup.javacourse.bookstore.model;
 
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -113,7 +114,7 @@ public class Book {
            ", summary='" + summary + '\'' +
            ", firstPublished=" + firstPublished +
            ", author=" + author +
-           ", genres=" + genres +
+//           ", genres=" + genres +
            '}';
   }
 

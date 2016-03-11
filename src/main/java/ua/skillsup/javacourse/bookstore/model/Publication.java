@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -17,6 +20,7 @@ import javax.persistence.ManyToOne;
  * @author leopold
  * @since 8/03/16
  */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
@@ -35,6 +39,11 @@ public abstract class Publication {
   private String summary;
 
   @ManyToMany
+  @JoinTable(
+      name = "Publication_BookStore",
+      joinColumns = {@JoinColumn(name = "bookStores_id")},
+      inverseJoinColumns = {@JoinColumn(name = "publications_id")}
+  )
   private List<BookStore> bookStores;
 
   @ManyToOne(optional = false)

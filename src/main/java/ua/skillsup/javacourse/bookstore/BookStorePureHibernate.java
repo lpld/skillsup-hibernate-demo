@@ -13,14 +13,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import ua.skillsup.javacourse.bookstore.model.Address;
 import ua.skillsup.javacourse.bookstore.model.Author;
 import ua.skillsup.javacourse.bookstore.model.Book;
+import ua.skillsup.javacourse.bookstore.model.BookPublication;
+import ua.skillsup.javacourse.bookstore.model.BookStore;
 import ua.skillsup.javacourse.bookstore.model.Genre;
+import ua.skillsup.javacourse.bookstore.model.Magazine;
+import ua.skillsup.javacourse.bookstore.model.MagazineIssue;
+import ua.skillsup.javacourse.bookstore.model.Publication;
+import ua.skillsup.javacourse.bookstore.model.Publisher;
 
 /**
  * @author leopold
@@ -33,12 +41,31 @@ public class BookStorePureHibernate {
   static SessionFactory sessionFactory;
 
   public static void main(String[] args) {
-    sessionFactory = new Configuration().configure().buildSessionFactory();
+//    sessionFactory = new Configuration().configure().buildSessionFactory();
+    sessionFactory = new Configuration()
+        .setProperty("hibernate.connection.driver_class", "org.h2.Driver")
+        .setProperty("hibernate.connection.url", "jdbc:h2:mem:books_db;DB_CLOSE_DELAY=-1")
+        .setProperty("hibernate.show_sql", "true")
+        .setProperty("hibernate.hbm2ddl.auto", "update")
+        .setProperty("hibernate.connection.isolation", "4")
+        .setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
+        .addAnnotatedClass(Address.class)
+        .addAnnotatedClass(Author.class)
+        .addAnnotatedClass(Book.class)
+        .addAnnotatedClass(BookPublication.class)
+        .addAnnotatedClass(BookStore.class)
+        .addAnnotatedClass(Genre.class)
+        .addAnnotatedClass(Magazine.class)
+        .addAnnotatedClass(MagazineIssue.class)
+        .addAnnotatedClass(Publication.class)
+        .addAnnotatedClass(Publisher.class)
+        .buildSessionFactory();
 
     fillGenres();
     createBookAndAuthor();
     authorAddBook();
     updateAuthor();
+    updateAuthor2();
     deleteGenre();
     lazyCollectionDemo();
     updateBook();
@@ -55,10 +82,19 @@ public class BookStorePureHibernate {
     final Session session = sessionFactory.openSession();
     session.getTransaction().begin();
 
-    Stream.of("Drama", "Classic", "Detective", "Fantasy", "Historical",
-              "Horror", "Science fiction", "Mystery")
-        .map(Genre::new)
-        .forEach(session::persist);
+//    Stream.of("Drama", "Classic", "Detective", "Fantasy", "Historical",
+//              "Horror", "Science fiction", "Mystery")
+//        .map(Genre::new)
+//        .forEach(session::persist);
+
+    final List<String> genreNames =
+        Arrays.asList("Drama", "Classic", "Detective", "Fantasy", "Historical",
+                      "Horror", "Science fiction", "Mystery");
+
+    for (String genreName : genreNames) {
+      final Genre genre = new Genre(genreName);
+      session.persist(genre);
+    }
 
     session.getTransaction().commit();
     session.close();
@@ -84,6 +120,7 @@ public class BookStorePureHibernate {
     author.getBooks().add(book);
 
     session.persist(author);
+//    session.persist(book);
 
     log.info("Created new author {} with id = {}", author.getName(), author.getId());
 
@@ -96,7 +133,7 @@ public class BookStorePureHibernate {
     doInTransaction(session -> {
 
       final Author orwell = (Author) session
-          .createQuery("FROM Author a where a.name=:nm")
+          .createQuery("SELECT a FROM Author a where a.name=:nm")
           .setParameter("nm", "George Orwell")
           .uniqueResult();
 
@@ -116,6 +153,16 @@ public class BookStorePureHibernate {
   }
 
   static void updateAuthor() {
+    log.info("UPDATE AUTHOR");
+    final Author orwell = doInTransaction(s -> {
+      final Author author = s.get(Author.class, 9L);
+      author.setCountry("Ukraine");
+
+      return null;
+    });
+  }
+
+  static void updateAuthor2() {
     log.info("UPDATE AUTHOR");
     final Author orwell = doInTransaction(s -> s.get(Author.class, 9L));
 

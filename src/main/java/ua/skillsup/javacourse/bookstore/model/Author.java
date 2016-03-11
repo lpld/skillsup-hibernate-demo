@@ -1,6 +1,5 @@
 package ua.skillsup.javacourse.bookstore.model;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
