@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain.genre;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ public class Genre {
   @GeneratedValue
   private Long id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String name;
 
   public Genre() {

@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain.book;
 
 import java.util.Set;
 
@@ -31,7 +31,7 @@ public class Author {
   private String name;
 
   @Basic(fetch = FetchType.EAGER, optional = false)
-  @Column(name = "country", nullable = false)
+  @Column(name = "country", nullable = true)
   private String country;
 
   @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

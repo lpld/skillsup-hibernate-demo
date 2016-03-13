@@ -1,7 +1,9 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain.magazine;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+
+import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
 
 /**
  * @author leopold

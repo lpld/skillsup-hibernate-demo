@@ -1,20 +1,19 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain.publication;
 
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  * @author leopold
  * @since 8/03/16
  */
 @Entity
-public class BookStore {
+public class Publisher {
 
   @Id
   @GeneratedValue
@@ -23,10 +22,7 @@ public class BookStore {
   @Column(nullable = false)
   private String name;
 
-  @Embedded
-  private Address address;
-
-  @ManyToMany(mappedBy = "bookStores")
+  @OneToMany(mappedBy = "publisher")
   private List<Publication> publications;
-}
 
+}

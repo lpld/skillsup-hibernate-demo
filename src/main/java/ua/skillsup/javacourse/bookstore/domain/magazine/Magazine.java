@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain.magazine;
 
 import java.util.List;
 
@@ -6,7 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
 
 /**
  * @author leopold
@@ -24,7 +27,9 @@ public class Magazine {
 
   private String summary;
 
+  @ManyToOne
+  private Genre genre;
+
   @OneToMany(mappedBy = "magazine")
   private List<MagazineIssue> issues;
-
 }

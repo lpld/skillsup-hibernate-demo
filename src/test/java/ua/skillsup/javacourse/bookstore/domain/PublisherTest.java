@@ -1,8 +1,6 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author leopold

@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore;
+package ua.skillsup.javacourse.bookstore.old_demo;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
@@ -17,18 +17,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
-import ua.skillsup.javacourse.bookstore.model.Address;
-import ua.skillsup.javacourse.bookstore.model.Author;
-import ua.skillsup.javacourse.bookstore.model.Book;
-import ua.skillsup.javacourse.bookstore.model.BookPublication;
-import ua.skillsup.javacourse.bookstore.model.BookStore;
-import ua.skillsup.javacourse.bookstore.model.Genre;
-import ua.skillsup.javacourse.bookstore.model.Magazine;
-import ua.skillsup.javacourse.bookstore.model.MagazineIssue;
-import ua.skillsup.javacourse.bookstore.model.Publication;
-import ua.skillsup.javacourse.bookstore.model.Publisher;
+import ua.skillsup.javacourse.bookstore.domain.store.Address;
+import ua.skillsup.javacourse.bookstore.domain.book.Author;
+import ua.skillsup.javacourse.bookstore.domain.book.Book;
+import ua.skillsup.javacourse.bookstore.domain.book.BookPublication;
+import ua.skillsup.javacourse.bookstore.domain.store.BookStore;
+import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
+import ua.skillsup.javacourse.bookstore.domain.magazine.Magazine;
+import ua.skillsup.javacourse.bookstore.domain.magazine.MagazineIssue;
+import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
+import ua.skillsup.javacourse.bookstore.domain.publication.Publisher;
 
 /**
  * @author leopold

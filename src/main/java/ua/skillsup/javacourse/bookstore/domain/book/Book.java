@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore.model;
+package ua.skillsup.javacourse.bookstore.domain.book;
 
 
 import java.time.LocalDate;
@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
+import ua.skillsup.javacourse.bookstore.domain.publication.Publisher;
 
 /**
  * @author leopold
@@ -46,6 +49,16 @@ public class Book {
 
   @OneToMany(mappedBy = "book")
   private List<BookPublication> publications;
+
+  public BookPublication addPublication(Publisher publisher, String isbn, LocalDate date) {
+    final BookPublication publication = new BookPublication();
+    publication.setPublisher(publisher);
+    publication.setBook(this);
+    publication.setDate(date);
+    publication.setIsbn(isbn);
+
+    return publication;
+  }
 
   // ------------------------------------------------------------------------------------------ //
 
@@ -101,8 +114,7 @@ public class Book {
     return publications;
   }
 
-  public void setPublications(
-      List<BookPublication> publications) {
+  public void setPublications(List<BookPublication> publications) {
     this.publications = publications;
   }
 

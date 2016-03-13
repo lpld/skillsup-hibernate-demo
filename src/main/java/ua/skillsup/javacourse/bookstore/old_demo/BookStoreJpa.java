@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore;
+package ua.skillsup.javacourse.bookstore.old_demo;
 
 
 import org.slf4j.Logger;
@@ -15,13 +15,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockModeType;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import ua.skillsup.javacourse.bookstore.model.Author;
-import ua.skillsup.javacourse.bookstore.model.Book;
-import ua.skillsup.javacourse.bookstore.model.Genre;
+import ua.skillsup.javacourse.bookstore.domain.book.Author;
+import ua.skillsup.javacourse.bookstore.domain.book.Book;
+import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
 
 /**
  * @author leopold
