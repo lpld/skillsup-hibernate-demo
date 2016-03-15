@@ -11,7 +11,6 @@ import ua.skillsup.javacourse.bookstore.domain.magazine.MagazineIssue;
  * @author leopold
  * @since 13/03/16
  */
-@Repository
 public interface PublicationRepo {
 
   List<BookPublication> findBooksByName(String name);

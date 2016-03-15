@@ -1,13 +1,14 @@
 package ua.skillsup.javacourse.bookstore.domain.genre;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 /**
  * @author leopold
  * @since 13/03/16
  */
-@Repository
 public interface GenreRepo {
+
+  List<Genre> getAllGenres();
 
   Genre getGenre(String name);
 

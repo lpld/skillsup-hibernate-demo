@@ -1,6 +1,8 @@
 package ua.skillsup.javacourse.bookstore.persistence;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -19,10 +21,11 @@ import static java.util.stream.Collectors.toList;
  * @author leopold
  * @since 13/03/16
  */
+@Repository
 public class PublicationRepoImpl implements PublicationRepo {
 
   @Inject
-  private Session session;
+  private SessionFactory session;
 
   @Inject
   private GenreRepo genreRepo;
@@ -36,8 +39,8 @@ public class PublicationRepoImpl implements PublicationRepo {
 
     // todo: check this for n+1 problem
     final List<Book> books = castBooks(
-        session
-            .createQuery("FROM Book b where b.titie LIKE :nm")
+        session.getCurrentSession()
+            .createQuery("FROM Book b where b.title LIKE :nm")
             .setParameter("nm", "%" + name + "%")
             .list());
 
@@ -59,7 +62,7 @@ public class PublicationRepoImpl implements PublicationRepo {
     final Genre genre = genreRepo.getGenre(genreName);
 
     return castBookPublications(
-        session
+        session.getCurrentSession()
             .createQuery(
                 "FROM BookPublication p " +
                 "JOIN FETCH p.book " +
@@ -76,7 +79,7 @@ public class PublicationRepoImpl implements PublicationRepo {
     final Genre genre = genreRepo.getGenre(genreName);
 
     return castBookPublications(
-        session
+        session.getCurrentSession()
             .createQuery(
                 "FROM BookPublication p " +
                 "JOIN FETCH p.book " +
@@ -93,7 +96,7 @@ public class PublicationRepoImpl implements PublicationRepo {
     final Genre genre = genreRepo.getGenre(genreName);
 
     return castMagazineIssues(
-        session
+        session.getCurrentSession()
             .createQuery(
                 "SELECT DISTINCT p FROM MagazineIssue p " +
                 "WHERE p.magazine.genre = :g " +

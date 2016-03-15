@@ -3,12 +3,15 @@ package ua.skillsup.javacourse.bookstore;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import org.hibernate.Session;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -17,6 +20,8 @@ import javax.sql.DataSource;
  * @since 13/03/16
  */
 @Configuration
+@ComponentScan
+@EnableTransactionManagement
 public class SpringConfig {
 
   @Bean
@@ -30,7 +35,7 @@ public class SpringConfig {
   public LocalSessionFactoryBean sessionFactory() {
     final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource());
-    sessionFactory.setPackagesToScan("ua.skillsup.javacourse.bookstore.model");
+    sessionFactory.setPackagesToScan("ua.skillsup.javacourse.bookstore.domain");
     sessionFactory.setConfigLocation(new ClassPathResource("hibernate_spring.cfg.xml"));
 
     return sessionFactory;
