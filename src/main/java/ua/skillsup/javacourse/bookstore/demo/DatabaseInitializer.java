@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore.servlets;
+package ua.skillsup.javacourse.bookstore.demo;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
