@@ -7,6 +7,7 @@
     <groupId>ua.skillsup.javacourse</groupId>
     <artifactId>book-store</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <h2.version>1.4.191</h2.version>
@@ -78,6 +79,13 @@
         </dependency>
 
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -85,6 +93,7 @@
             <!-- only during "tests" phase -->
             <!--<scope>test</scope>-->
         </dependency>
+
     </dependencies>
 
     <build>
@@ -97,6 +106,19 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.8.v20160314</version>
             </plugin>
         </plugins>
     </build>
