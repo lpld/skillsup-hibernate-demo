@@ -31,6 +31,7 @@ public class BookEditServiceImpl implements BookEditService {
   private GenreRepo genreRepo;
 
   @Override
+  @Transactional
   public Author createAuthor(String name, String country, LocalDate birthday) {
     final Author author = new Author();
     author.setName(name);

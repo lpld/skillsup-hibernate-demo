@@ -3,6 +3,8 @@ package ua.skillsup.javacourse.bookstore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import ua.skillsup.javacourse.bookstore.config.SpringConfig;
+
 /**
  * @author leopold
  * @since 13/03/16

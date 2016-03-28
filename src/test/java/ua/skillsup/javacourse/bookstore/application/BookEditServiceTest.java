@@ -13,13 +13,12 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
-import ua.skillsup.javacourse.bookstore.SpringConfig;
+import ua.skillsup.javacourse.bookstore.config.SpringConfig;
 import ua.skillsup.javacourse.bookstore.domain.book.Author;
 import ua.skillsup.javacourse.bookstore.domain.book.Book;
 import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
