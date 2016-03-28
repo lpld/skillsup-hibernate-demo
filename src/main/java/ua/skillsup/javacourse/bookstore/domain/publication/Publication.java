@@ -45,6 +45,8 @@ public abstract class Publication {
 
   private String summary;
 
+  private Double price;
+
   private Double rating;
 
   @OneToMany(mappedBy = "publication")
@@ -52,6 +54,5 @@ public abstract class Publication {
 
   @ManyToOne(optional = false)
   private Publisher publisher;
-
 
 }

@@ -54,7 +54,8 @@ public class BookEditServiceImpl implements BookEditService {
     final Set<Genre> bookGenres = genres.stream().map(g -> {
       Genre genre = genreRepo.getGenre(g);
       if (genre == null) {
-        genre = genreRepo.add(g);
+        genre = new Genre(g);
+        genreRepo.add(genre);
       }
       return genre;
     }).collect(Collectors.toSet());

@@ -1,16 +1,12 @@
 package ua.skillsup.javacourse.bookstore.domain.genre;
 
-import java.util.List;
+import ua.skillsup.javacourse.bookstore.domain.Repo;
 
 /**
  * @author leopold
  * @since 13/03/16
  */
-public interface GenreRepo {
-
-  List<Genre> getAllGenres();
+public interface GenreRepo extends Repo<Genre> {
 
   Genre getGenre(String name);
-
-  Genre add(String name);
 }

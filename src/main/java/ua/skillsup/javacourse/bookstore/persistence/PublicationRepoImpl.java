@@ -1,6 +1,5 @@
 package ua.skillsup.javacourse.bookstore.persistence;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
@@ -38,7 +37,7 @@ public class PublicationRepoImpl implements PublicationRepo {
 //        .list();
 
     // todo: check this for n+1 problem
-    final List<Book> books = castBooks(
+    final List<Book> books = Util.castList(
         session.getCurrentSession()
             .createQuery("FROM Book b where b.title LIKE :nm")
             .setParameter("nm", "%" + name + "%")
@@ -61,7 +60,7 @@ public class PublicationRepoImpl implements PublicationRepo {
   public List<BookPublication> findBooksByGenreCheapestFirst(String genreName, int limit) {
     final Genre genre = genreRepo.getGenre(genreName);
 
-    return castBookPublications(
+    return Util.cast(
         session.getCurrentSession()
             .createQuery(
                 "FROM BookPublication p " +
@@ -78,7 +77,7 @@ public class PublicationRepoImpl implements PublicationRepo {
   public List<BookPublication> findBooksByGenrePopularFirst(String genreName, int limit) {
     final Genre genre = genreRepo.getGenre(genreName);
 
-    return castBookPublications(
+    return Util.castList(
         session.getCurrentSession()
             .createQuery(
                 "FROM BookPublication p " +
@@ -95,7 +94,7 @@ public class PublicationRepoImpl implements PublicationRepo {
   public List<MagazineIssue> findPopularMagazinesByGenre(String genreName, int limit) {
     final Genre genre = genreRepo.getGenre(genreName);
 
-    return castMagazineIssues(
+    return Util.castList(
         session.getCurrentSession()
             .createQuery(
                 "SELECT DISTINCT p FROM MagazineIssue p " +
@@ -105,20 +104,5 @@ public class PublicationRepoImpl implements PublicationRepo {
             .setMaxResults(limit)
             .list()
     );
-  }
-
-  @SuppressWarnings("unchecked")
-  private static List<Book> castBooks(List list) {
-    return list;
-  }
-
-  @SuppressWarnings("unchecked")
-  private static List<BookPublication> castBookPublications(List list) {
-    return list;
-  }
-
-  @SuppressWarnings("unchecked")
-  private static List<MagazineIssue> castMagazineIssues(List list) {
-    return list;
   }
 }

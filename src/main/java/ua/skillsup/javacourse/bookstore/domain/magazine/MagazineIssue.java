@@ -19,6 +19,6 @@ import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
 @Entity
 public class MagazineIssue extends Publication {
 
-  @ManyToOne(optional = false)
+  @ManyToOne
   private Magazine magazine;
 }

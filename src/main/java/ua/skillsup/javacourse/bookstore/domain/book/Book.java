@@ -2,8 +2,10 @@ package ua.skillsup.javacourse.bookstore.domain.book;
 
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +51,7 @@ public class Book {
   @ManyToMany
   private Set<Genre> genres;
 
-  @OneToMany(mappedBy = "book")
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<BookPublication> publications;
 
   public BookPublication addPublication(Publisher publisher, String isbn, LocalDate date) {
@@ -57,7 +59,13 @@ public class Book {
     publication.setPublisher(publisher);
     publication.setBook(this);
     publication.setDate(date);
+    publication.setTitle(this.title);
     publication.setIsbn(isbn);
+
+    if (publications == null) {
+      publications = new HashSet<>();
+    }
+    publications.add(publication);
 
     return publication;
   }

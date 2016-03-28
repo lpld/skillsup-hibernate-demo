@@ -21,6 +21,6 @@ public class BookPublication extends Publication {
 
   private String isbn;
 
-  @ManyToOne(optional = false)
+  @ManyToOne
   private Book book;
 }

@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.bookstore.config;
+package ua.skillsup.javacourse.bookstore;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

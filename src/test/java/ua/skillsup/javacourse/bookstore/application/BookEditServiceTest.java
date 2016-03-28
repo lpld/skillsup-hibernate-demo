@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
-import ua.skillsup.javacourse.bookstore.config.SpringConfig;
+import ua.skillsup.javacourse.bookstore.SpringConfig;
 import ua.skillsup.javacourse.bookstore.domain.book.Author;
 import ua.skillsup.javacourse.bookstore.domain.book.Book;
 import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
@@ -74,7 +74,7 @@ public class BookEditServiceTest {
         Stream.of("Science Fiction", "Dystopia").collect(Collectors.toSet())
     );
 
-    final List<Genre> allGenres = doInTransaction(s -> genreRepo.getAllGenres());
+    final List<Genre> allGenres = doInTransaction(s -> genreRepo.getAll());
 
     assertEquals(2, allGenres.size());
 

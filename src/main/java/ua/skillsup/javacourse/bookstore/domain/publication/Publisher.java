@@ -23,6 +23,13 @@ import lombok.ToString;
 @Entity
 public class Publisher {
 
+  public Publisher() {
+  }
+
+  public Publisher(String name) {
+    this.name = name;
+  }
+
   @Id
   @GeneratedValue
   private Long id;

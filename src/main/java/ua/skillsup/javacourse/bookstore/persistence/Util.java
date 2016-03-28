@@ -6,13 +6,18 @@ import java.util.List;
  * @author leopold
  * @since 13/03/16
  */
-public final class Util {
+final class Util {
 
   private Util() {
   }
 
   @SuppressWarnings("unchecked")
-  public static <T> List<T> castList(List list) {
+  static <T> List<T> castList(List list) {
     return list;
+  }
+
+  @SuppressWarnings("unchecked")
+  static <T> T cast(Object o) {
+    return (T) o;
   }
 }
