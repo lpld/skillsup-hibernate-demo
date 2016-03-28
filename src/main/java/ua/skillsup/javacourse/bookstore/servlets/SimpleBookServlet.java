@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ua.skillsup.javacourse.bookstore.application.BookSearchService;
 import ua.skillsup.javacourse.bookstore.SpringConfig;
+import ua.skillsup.javacourse.bookstore.demo.DatabaseInitializer;
 import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
 
 /**
