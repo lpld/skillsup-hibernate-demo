@@ -44,7 +44,7 @@ public class BookEditServiceImpl implements BookEditService {
 
   public Book createBook(Long authorId, String title, String summary, Set<String> genres) {
 
-    final Author author = authorRepo.getById(authorId);
+    final Author author = authorRepo.getById(authorId).get();
 
     final Book book = new Book();
     book.setTitle(title);

@@ -1,6 +1,7 @@
 package ua.skillsup.javacourse.bookstore.domain;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author leopold
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public interface Repo<T> {
 
-  T getById(Long id);
+  Optional<T> getById(Long id);
 
   T findOneByField(String field, String value);
 

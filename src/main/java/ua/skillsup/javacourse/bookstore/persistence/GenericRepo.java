@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -25,8 +26,8 @@ public abstract class GenericRepo<T> implements Repo<T> {
   }
 
   @Override
-  public T getById(Long id) {
-    return sessionFactory.getCurrentSession().get(clazz, id);
+  public Optional<T> getById(Long id) {
+    return Optional.ofNullable(sessionFactory.getCurrentSession().get(clazz, id));
   }
 
   @Override

@@ -4,13 +4,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
 import ua.skillsup.javacourse.bookstore.application.BookSearchService;
+import ua.skillsup.javacourse.bookstore.application.EntityNotFoundException;
 import ua.skillsup.javacourse.bookstore.domain.book.Author;
 import ua.skillsup.javacourse.bookstore.domain.book.AuthorRepo;
+import ua.skillsup.javacourse.bookstore.domain.book.Book;
+import ua.skillsup.javacourse.bookstore.domain.book.BookRepo;
 import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
 import ua.skillsup.javacourse.bookstore.domain.publication.PublicationRepo;
 import ua.skillsup.javacourse.bookstore.domain.book.BookPublication;
@@ -31,6 +35,24 @@ public class BookSearchServiceImpl implements BookSearchService {
 
   @Inject
   private AuthorRepo authorRepo;
+
+  @Inject
+  private BookRepo bookRepo;
+
+  public Book getBook(Long id) throws EntityNotFoundException {
+    return bookRepo.getById(id).orElseThrow(
+        (() -> new EntityNotFoundException("Book with ID " + id + " not found")));
+  }
+
+  @Override
+  public Book updateBookInfo(Book book) throws EntityNotFoundException {
+    final Book origBook = getBook(book.getId());
+
+    origBook.setTitle(book.getTitle());
+    origBook.setSummary(book.getSummary());
+
+    return origBook;
+  }
 
   @Override
   public List<Author> findAuthor(String name) {

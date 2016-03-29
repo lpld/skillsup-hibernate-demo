@@ -3,6 +3,7 @@ package ua.skillsup.javacourse.bookstore.application;
 import java.util.List;
 
 import ua.skillsup.javacourse.bookstore.domain.book.Author;
+import ua.skillsup.javacourse.bookstore.domain.book.Book;
 import ua.skillsup.javacourse.bookstore.domain.book.BookPublication;
 import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
 
@@ -17,4 +18,8 @@ public interface BookSearchService {
   List<BookPublication> findPublicationsForBook(String name);
 
   List<Publication> findBestForGenre(String genre);
+
+  Book getBook(Long id) throws EntityNotFoundException;
+
+  Book updateBookInfo(Book book) throws EntityNotFoundException;
 }
