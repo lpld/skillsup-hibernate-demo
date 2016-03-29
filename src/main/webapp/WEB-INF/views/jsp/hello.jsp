@@ -12,6 +12,6 @@
 </head>
 <body>
 <h3>Hello, dear customer</h3>
-<a href="/books4">List of recommended publications</a>
+<a href="/books">List of recommended publications</a>
 </body>
 </html>

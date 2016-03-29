@@ -1,5 +1,10 @@
 package ua.skillsup.javacourse.bookstore.demo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +28,9 @@ import static java.util.stream.Collectors.toSet;
  * @since 29/03/16
  */
 @Component
-public class DatabaseInitializer {
+public class DatabaseInitializer implements ApplicationListener<ContextRefreshedEvent> {
+
+  private static final Logger log = LoggerFactory.getLogger(DatabaseInitializer.class);
 
   @Inject
   private AuthorRepo authorRepo;
@@ -34,8 +41,14 @@ public class DatabaseInitializer {
   @Inject
   private PublisherRepo publisherRepo;
 
+  @Override
   @Transactional
-  public void initDb() {
+  public void onApplicationEvent(ContextRefreshedEvent event) {
+    log.info(" --- app ctx started!");
+    initDb();
+  }
+
+  private void initDb() {
     initGenres();
     initPublishers();
 

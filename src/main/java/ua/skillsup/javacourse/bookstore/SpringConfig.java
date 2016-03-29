@@ -23,8 +23,14 @@ import javax.sql.DataSource;
  * @since 13/03/16
  */
 @Configuration // аннотация, означающая, что этот класс является спринговой конфигурацией
-@ComponentScan // включаем автоматическое сканирование компонентов (классаов, пемеченных @Component, @Service, @Repository)
-@EnableTransactionManagement // включаем менеджмент транзакций (теперь спринг будет учитывать аннотации @Transactional)
+@ComponentScan({
+    "ua.skillsup.javacourse.bookstore.application",
+    "ua.skillsup.javacourse.bookstore.persistence",
+    "ua.skillsup.javacourse.bookstore.demo"
+})
+// включаем автоматическое сканирование компонентов (классаов, пемеченных @Component, @Service, @Repository)
+@EnableTransactionManagement
+// включаем менеджмент транзакций (теперь спринг будет учитывать аннотации @Transactional)
 @PropertySource("classpath:db.properties") // импортрруем проперти файл db.properties
 public class SpringConfig {
 
