@@ -22,7 +22,7 @@ import ua.skillsup.javacourse.bookstore.domain.publication.Publication;
  * @author leopold
  * @since 28/03/16
  */
-@WebServlet(name = "bookServlet", urlPatterns = "/books")
+//@WebServlet(name = "bookServlet", urlPatterns = "/books")
 public class SimpleBookServlet extends HttpServlet {
 
   private ConfigurableApplicationContext appCtx;

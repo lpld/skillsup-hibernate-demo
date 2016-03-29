@@ -58,6 +58,7 @@ public class BookSearchServiceImpl implements BookSearchService {
     // join three lists
     return Stream.of(cheapest, popular, magazines)
         .flatMap(List::stream)
+        .distinct()
         .collect(toList());
 
   }
