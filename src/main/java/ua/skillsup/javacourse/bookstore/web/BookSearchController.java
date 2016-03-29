@@ -3,10 +3,9 @@ package ua.skillsup.javacourse.bookstore.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,12 +23,13 @@ public class BookSearchController {
   @Inject
   private BookSearchService bookSearchService;
 
-  @RequestMapping(method = RequestMethod.GET)
-  @ResponseBody
-  public String getRecommendations() {
+  @RequestMapping(path = "/recommendations", method = RequestMethod.GET)
+  public String getRecommendations(Map<String, Object> model) {
     final List<Publication> publications = bookSearchService.findBestForGenre("Fantasy");
 
-    return publications.stream().map(Publication::toString).collect(Collectors.joining(" "));
+    model.put("publications", publications);
+
+    return "books";
   }
 
 }
