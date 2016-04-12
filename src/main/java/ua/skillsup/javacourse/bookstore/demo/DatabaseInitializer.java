@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStartedEvent;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +15,7 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
+import lombok.extern.slf4j.Slf4j;
 import ua.skillsup.javacourse.bookstore.domain.book.Author;
 import ua.skillsup.javacourse.bookstore.domain.book.AuthorRepo;
 import ua.skillsup.javacourse.bookstore.domain.book.Book;
@@ -20,6 +23,8 @@ import ua.skillsup.javacourse.bookstore.domain.genre.Genre;
 import ua.skillsup.javacourse.bookstore.domain.genre.GenreRepo;
 import ua.skillsup.javacourse.bookstore.domain.publication.Publisher;
 import ua.skillsup.javacourse.bookstore.domain.publication.PublisherRepo;
+import ua.skillsup.javacourse.bookstore.domain.security.User;
+import ua.skillsup.javacourse.bookstore.domain.security.UserRepo;
 
 import static java.util.stream.Collectors.toSet;
 
@@ -27,6 +32,7 @@ import static java.util.stream.Collectors.toSet;
  * @author leopold
  * @since 29/03/16
  */
+@Slf4j
 @Component
 public class DatabaseInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -41,6 +47,12 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
   @Inject
   private PublisherRepo publisherRepo;
 
+  @Inject
+  private UserRepo userRepo;
+
+  private final PasswordEncoder passwordEncoder =
+      new StandardPasswordEncoder();
+
   @Override
   @Transactional
   public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -53,6 +65,7 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
     initPublishers();
 
     initBooks();
+    initUsers();
 
 //    initMagazines();
   }
@@ -95,5 +108,24 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
     Stream.of("Publisher1", "Publisher2", "Publisher3")
         .map(Publisher::new)
         .forEach(publisherRepo::add);
+  }
+
+  private void initUsers() {
+    final User user = new User();
+    user.setUsername("user1");
+    user.setPassword(passwordEncoder.encode("userpass123"));
+    user.setAdmin(false);
+    user.setEnabled(true);
+
+    userRepo.add(user);
+
+    final User admin = new User();
+    admin.setUsername("admin1");
+    admin.setPassword(passwordEncoder.encode("adminpass123"));
+    admin.setAdmin(true);
+    admin.setEnabled(true);
+
+    userRepo.add(admin);
+
   }
 }

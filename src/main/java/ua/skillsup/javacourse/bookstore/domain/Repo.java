@@ -11,7 +11,7 @@ public interface Repo<T> {
 
   Optional<T> getById(Long id);
 
-  T findOneByField(String field, String value);
+  Optional<T> findOneByField(String field, String value);
 
   List<T> findWhereFieldLike(String field, String value);
 

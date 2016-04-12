@@ -18,6 +18,6 @@ public class GenreRepoImpl extends GenericRepo<Genre> implements GenreRepo {
 
   @Override
   public Genre getGenre(String name) {
-    return findOneByField("name", name);
+    return findOneByField("name", name).orElse(null);
   }
 }

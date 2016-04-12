@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan("ua.skillsup.javacourse.bookstore.web")
 @EnableWebMvc
-@Import(SpringConfig.class)
+@Import({SpringConfig.class, SpringSecurityConfig.class})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
   @Override

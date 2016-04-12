@@ -18,6 +18,6 @@ public class PublisherRepoImpl extends GenericRepo<Publisher> implements Publish
 
   @Override
   public Publisher findByName(String name) {
-    return findOneByField("name", name);
+    return findOneByField("name", name).orElse(null);
   }
 }

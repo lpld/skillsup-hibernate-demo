@@ -40,13 +40,13 @@ public abstract class GenericRepo<T> implements Repo<T> {
   }
 
   @Override
-  public T findOneByField(String field, String value) {
-    return Util.cast(
+  public Optional<T> findOneByField(String field, String value) {
+    return Optional.ofNullable(Util.cast(
         sessionFactory.getCurrentSession()
             .createCriteria(clazz)
             .add(Restrictions.eq(field, value))
             .uniqueResult()
-    );
+    ));
   }
 
   @Override
