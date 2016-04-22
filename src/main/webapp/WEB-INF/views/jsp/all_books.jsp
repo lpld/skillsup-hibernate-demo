@@ -14,14 +14,15 @@
     <jsp:include page="../includes.jsp"/>
 </head>
 <body>
+
 <jsp:include page="../header.jsp">
-    <jsp:param name="activePage" value="RECOMMEND"/>
+    <jsp:param name="activePage" value="ALL"/>
 </jsp:include>
 
 <div class="container">
 
     <div class="row">
-        <h2>Books recommended specially for you!</h2>
+        <h2>All available books</h2>
     </div>
 
     <div>

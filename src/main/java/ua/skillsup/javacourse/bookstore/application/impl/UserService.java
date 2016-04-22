@@ -35,8 +35,9 @@ public class UserService implements UserDetailsService {
                      u.getPassword(),
                      u.isEnabled(),
                      true, true, true,
-                     u.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.name())).collect(
-                         toSet())
+                     u.getRoles().stream()
+                         .map(r -> new SimpleGrantedAuthority(r.name()))
+                         .collect(toSet())
                  )
         )
         .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found"));

@@ -12,15 +12,9 @@
 <html>
 <head>
     <title>Book</title>
+    <jsp:include page="../includes.jsp"/>
 </head>
 <body>
-<h3>View book</h3>
-
-<a href="<c:url value='/logout' />">
-    Logout
-    <sec:authentication property="principal.username" />
-</a>
-
 
 <jsp:include page="book.jsp">
     <jsp:param name="readonly" value="true"/>

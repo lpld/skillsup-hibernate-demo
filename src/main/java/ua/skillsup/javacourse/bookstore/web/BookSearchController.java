@@ -1,5 +1,7 @@
 package ua.skillsup.javacourse.bookstore.web;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,15 @@ public class BookSearchController {
   @Inject
   private BookSearchService bookSearchService;
 
+  @RequestMapping(path = "/allBooks", method = RequestMethod.GET)
+  public String getAllBooks(Map<String, Object> model) {
+    final List<Publication> publications = bookSearchService.findBestForGenre("Fantasy");
+
+    model.put("publications", publications);
+
+    return "all_books";
+  }
+
   @RequestMapping(path = "/recommendations", method = RequestMethod.GET)
   public String getRecommendations(Map<String, Object> model) {
     final List<Publication> publications = bookSearchService.findBestForGenre("Fantasy");
@@ -39,6 +50,8 @@ public class BookSearchController {
 
   @RequestMapping(path = "/{id}", method = RequestMethod.GET)
   public ModelAndView getBook(@PathVariable("id") Long id) throws EntityNotFoundException {
+    SecurityContextHolder.getContext().getAuthentication();
+
     final Book book = bookSearchService.getBook(id);
 
     return new ModelAndView("book_view", "book", book);

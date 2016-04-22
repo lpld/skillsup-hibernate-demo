@@ -11,14 +11,10 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Book</title>
+    <title>Edit Book</title>
+    <jsp:include page="../includes.jsp"/>
 </head>
 <body>
-<h3>Edit book</h3>
-<a href="<c:url value='/logout' />">
-    Logout
-    <sec:authentication property="principal.username" />
-</a>
 
 <jsp:include page="book.jsp">
     <jsp:param name="readonly" value="false"/>
